@@ -7,6 +7,11 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var account = require('./routes/account_routes');
+var resume = require('./routes/resume_routes');
+var company = require('./routes/company_routes');
+var address = require('./routes/address_routes');
+var skill = require('./routes/skill_routes');
+
 
 var app = express();
 

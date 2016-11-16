@@ -23,14 +23,12 @@ router.get('/', function(req, res){
     }
     else {
         account_dal.getById(req.query.account_id, function(err,result) {
-           if (err) {
-               res.send(err);
-           }
-           else {
-               res.render('account/accountViewById', {'result': result});
-           }
+            if (err) {
+                res.send(err);
+            }
+            else {
+                res.render('account/accountViewById', {'result': result});
+            }
         });
     }
 });
-
-module.exports = router;

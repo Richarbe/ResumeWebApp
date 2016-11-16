@@ -10,7 +10,7 @@ router.get('/all', function(req, res) {
             res.send(err);
         }
         else {
-            res.render('account/accountViewAll', { 'result':result });
+            res.render('resume/resumeViewAll', { 'result':result });
         }
     });
 
@@ -23,14 +23,12 @@ router.get('/', function(req, res){
     }
     else {
         account_dal.getById(req.query.account_id, function(err,result) {
-           if (err) {
-               res.send(err);
-           }
-           else {
-               res.render('account/accountViewById', {'result': result});
-           }
+            if (err) {
+                res.send(err);
+            }
+            else {
+                res.render('resume/resumeViewById', {'result': result});
+            }
         });
     }
 });
-
-module.exports = router;
