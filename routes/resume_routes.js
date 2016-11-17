@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
-var account_dal = require('../model/account_dal');
+var resume_dal = require('../model/resume_dal');
 
 
 // View All accounts
 router.get('/all', function(req, res) {
-    account_dal.getAll(function(err, result){
+    resume_dal.getAll(function(err, result){
         if(err) {
             res.send(err);
         }
@@ -18,11 +18,11 @@ router.get('/all', function(req, res) {
 
 // View the account for the given id
 router.get('/', function(req, res){
-    if(req.query.account_id == null) {
-        res.send('account_id is null');
+    if(req.query.resume_id == null) {
+        res.send('resume_id is null');
     }
     else {
-        account_dal.getById(req.query.account_id, function(err,result) {
+        resume_dal.getById(req.query.resume_id, function(err,result) {
             if (err) {
                 res.send(err);
             }
@@ -32,3 +32,5 @@ router.get('/', function(req, res){
         });
     }
 });
+
+module.exports = router;

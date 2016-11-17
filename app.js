@@ -30,6 +30,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/account', account);
+app.use('/resume', resume);
+app.use('/company', company);
+app.use('/address', address);
+app.use('/skill', skill);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
