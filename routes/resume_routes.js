@@ -70,7 +70,7 @@ router.get('/insert', function(req, res){
     }
 });
 
-// Delete a resume for the given school_id
+// Delete a resume for the given resume_id
 router.get('/delete', function(req, res){
     if(req.query.resume_id == null) {
         res.send('resume_id is null');
