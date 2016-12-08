@@ -34,9 +34,9 @@ exports.insert = function(params, callback) {
 
     var queryData = [params.company_name];
 
-    connection.query(query, params.company_name, function(err, result) {
+    connection.query(query, queryData, function(err, result) {
 
-        // THEN USE THE COMPANY_ID RETURNED AS insertId AND THE SELECTED ADDRESS_IDs INTO COMPANY_ADDRESS
+        // THEN USE THE COMPANY_ID RETURNED AS insertId *AND THE SELECTED ADDRESS_IDs INTO COMPANY_ADDRESS
         var company_id = result.insertId;
 
         // NOTE THAT THERE IS ONLY ONE QUESTION MARK IN VALUES ?

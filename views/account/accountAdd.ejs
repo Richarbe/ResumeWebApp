@@ -1,8 +1,4 @@
-<html>
-<head>
-    <title>Add New Account</title>
-</head>
-<body>
+<%- include("../includes/header.ejs", {title:"Add New Account"}); %>
     <h1>Add New Account</h1>
     <form action="/account/insert" method="get">
         First Name: <input id="first_name" name="first_name" type="text" />
@@ -18,7 +14,4 @@
         <input type="submit" />   <button onclick="event.preventDefault();window.location.href='/account/all'">Cancel</button>
 
     </form>
-
-</body>
-
-</html>
+<%- include("../includes/footer.ejs"); %>

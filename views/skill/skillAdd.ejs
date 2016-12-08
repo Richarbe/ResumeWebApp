@@ -1,8 +1,4 @@
-<html>
-<head>
-    <title>Add New Skill</title>
-</head>
-<body>
+<%- include("../includes/header.ejs", {title:"Add New Skill"}); %>
     <h1>Add New Skill</h1>
     <form action="/skill/insert" method="get">
         Skill Name: <input id="name" name="name" type="text" />
@@ -14,6 +10,4 @@
         <input type="submit" />   <button onclick="event.preventDefault();window.location.href='/skill/all'">Cancel</button>
 
     </form>
-</body>
-
-</html>
+<%- include("../includes/footer.ejs"); %>

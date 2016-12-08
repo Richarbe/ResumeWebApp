@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var resume_dal = require('../model/resume_dal');
-var account_dal = require('../model/account_dal')
-
+var account_dal = require('../model/account_dal');
+var skill_dal = require('../model/skill_dal');
 
 // View All resumes
 router.get('/all', function(req, res) {
@@ -37,13 +37,15 @@ router.get('/', function(req, res){
 // Return the add a new resume form
 router.get('/add', function(req, res){
     // passing all the query parameters (req.query) to the insert function instead of each individually
-    account_dal.getAll(function(err,result) {
-        if (err) {
-            res.send(err);
-        }
-        else {
-            res.render('resume/resumeAdd', {'account': result});
-        }
+    account_dal.getAll(function(err,account) {
+        skill_dal.getAll(function(err,skill) {
+            if (err) {
+                res.send(err);
+            }
+            else {
+                res.render('resume/resumeAdd', {'account': account, 'skill': skill});
+            }
+        });
     });
 });
 

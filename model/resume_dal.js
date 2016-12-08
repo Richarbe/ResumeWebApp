@@ -28,8 +28,23 @@ exports.insert = function(params, callback) {
     // the data in queryData
     var queryData = [params.account_id, params.resume_name];
 
-    connection.query(query, queryData, function(err, result) {
-        callback(err, result);
+    connection.query(query, params.resume_name, function(err, result) {
+
+        // THEN USE THE resume_ID RETURNED AS insertId *AND THE SELECTED skill_IDs INTO resume_skill
+        var resume_id = result.insertId;
+
+        // NOTE THAT THERE IS ONLY ONE QUESTION MARK IN VALUES ?
+        var query = 'INSERT INTO resume_skill (resume_id, skill_id) VALUES (?, ?)';
+
+        // TO BULK INSERT RECORDS WE CREATE A MULTIDIMENSIONAL ARRAY OF THE VALUES
+        var resumeSkillData = [];
+        for (var i = 0; i < params.skill_id.length; i++) {
+            resumeSkillData.push([resume_id, params.skill_id[i]]);
+        }
+
+        connection.query(query, queryData, function (err, result) {
+            callback(err, result);
+        });
     });
 };
 
