@@ -1,0 +1,24 @@
+<%- include("../includes/header.ejs", {title:"Location - View All"}); %>
+        <h1>Locations</h1>
+        <a href="/location/add">Add New Location</a> <br />
+        <br />
+
+        <table border="2">
+            <tr><th>Name</th><th>Address</th><th>Actions</th></tr>
+            <% for(var i=0; result.length > i; i++ ) { %>
+            <tr>
+                <td><a href="/location/?location_id=<%= result[i].location_id %>"><%= result[i].location_name %> </a></td>
+                <td><%= result[i].address %></td>
+                <td>
+                    <button onclick="event.preventDefault();window.location.href='/location/edit/?location_id=<%= result[i].location_id %>'">Edit</button>
+                    <form action="/location/delete/">
+                        <input type="hidden" name="location_id" id="location_id" value="<%= result[i].location_id %>" />
+                        <input type="submit" value="Delete"/>
+                    </form>
+                </td>
+            </tr>
+            <% } %>
+        </table>
+        <br />
+        <a href="/">Back to Index</a>
+<%- include("../includes/footer.ejs"); %>

@@ -1,0 +1,10 @@
+<%- include("../includes/header.ejs", {title:"Locations - " + result[0].loc_name}); %>
+<h1>Location</h1>
+<ul>
+    <li>Location Name: <%= result[0].loc_name %></li>
+    <li>Address: <%= result[0].address %></li>
+</ul>
+
+<a href="/location/all"><< back</a>
+
+<%- include("../includes/footer.ejs"); %>

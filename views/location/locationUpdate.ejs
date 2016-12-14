@@ -1,0 +1,15 @@
+<%- include("../includes/header.ejs", {title: "Update " + company.company_name}); %>
+
+<h1>Update <%= location.loc_name%></h1>
+<form action="/location/update" method="get">
+    <input type="hidden" id="location_id" name="location_id" value="<%= location.location_id %>">
+    Location Name: <input id="loc_name" name="loc_name" type="text" value="<%= location.loc_name %>"/>
+    <br />
+    <br />
+    Address: <input id="address" name="address" type="text" value="<%= location.address %>"/>
+    <br />
+    <br />
+    <input type="submit" />   <button onclick="event.preventDefault();window.location.href='/address/all'">Cancel</button>
+</form>
+
+<%- include("../includes/footer.ejs"); %>
