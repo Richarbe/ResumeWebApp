@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var company_dal = require('../model/company_dal');
-var address_dal = require('../model/address_dal');
 
 // View All accounts
 router.get('/all', function(req, res) {
