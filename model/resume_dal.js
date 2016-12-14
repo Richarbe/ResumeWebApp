@@ -117,7 +117,8 @@ exports.update = function(params, callback) {
  DELIMITER //
  CREATE PROCEDURE resume_getinfo (_resume_id int)
  BEGIN
- SELECT * FROM resume WHERE resume_id = _resume_id;
+ SELECT * FROM resume r
+ WHERE resume_id = _resume_id;
  SELECT s.*, rs.resume_id FROM skill s
  LEFT JOIN resume_skill rs on rs.skill_id = s.skill_id AND resume_id = _resume_id;
  END //
@@ -128,7 +129,7 @@ exports.update = function(params, callback) {
 
 exports.edit = function(resume_id, callback) {
     var query = 'CALL resume_getinfo(?)';
-    var queryData = [company_id];
+    var queryData = [resume_id];
 
     connection.query(query, queryData, function(err, result) {
         callback(err, result);

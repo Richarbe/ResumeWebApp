@@ -78,7 +78,9 @@ router.get('/edit', function(req, res){
     }
     else {
         resume_dal.edit(req.query.resume_id, function(err, result){
-            res.render('resume/resumeUpdate', {resume: result[0][0], address: result[1]});
+            account_dal.getAll(function(err, account) {
+                res.render('resume/resumeUpdate', {resume: result[0][0], skill: result[1], account: account});
+            });
         });
     }
 
@@ -100,7 +102,7 @@ router.get('/edit2', function(req, res){
 
 router.get('/update', function(req, res) {
     resume_dal.update(req.query, function(err, result){
-        res.redirect(302, '/company/all');
+        res.redirect(302, '/resume/all');
     });
 });
 
