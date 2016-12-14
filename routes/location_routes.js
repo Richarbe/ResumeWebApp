@@ -4,7 +4,7 @@ var location_dal = require('../model/location_dal');
 
 // View All accounts
 router.get('/all', function(req, res) {
-    company_dal.getAll(function(err, result){
+    location_dal.getAll(function(err, result){
         if(err) {
             res.send(err);
         }
@@ -21,7 +21,7 @@ router.get('/', function(req, res){
         res.send('location_id is null');
     }
     else {
-        company_dal.getById(req.query.location_id, function(err,result) {
+        location_dal.getById(req.query.location_id, function(err,result) {
             if (err) {
                 res.send(err);
             }
@@ -61,6 +61,29 @@ router.get('/insert', function(req, res){
     }
 });
 
+router.get('/edit', function(req, res){
+    if(req.query.location_id == null) {
+        res.send('A location id is required');
+    }
+    else {
+        location_dal.getById(req.query.location_id, function(err,result) {
+            if (err) {
+                res.send(err);
+            }
+            else {
+                res.render('location/locationUpdate', {'result': result});
+            }
+        });
+    }
+
+});
+
+router.get('/update', function(req, res) {
+    location_dal.update(req.query, function(err, result){
+        res.redirect(302, '/location/all');
+    });
+});
+
 // Delete a location for the given location_id
 router.get('/delete', function(req, res){
     if(req.query.location_id == null) {
@@ -68,15 +91,15 @@ router.get('/delete', function(req, res){
     }
     else {
         location_dal.delete(req.query.location_id, function(err, result){
-            location_dal.companyAddressDeleteAll(req.query.location_id, function(err, result){
-                if(err) {
-                    res.send(err);
-                }
-                else {
-                    //poor practice, but we will handle it differently once we start using Ajax
-                    res.redirect(302, '/location/all');
-                }
-            });
+
+            if(err) {
+                res.send(err);
+            }
+            else {
+                //poor practice, but we will handle it differently once we start using Ajax
+                res.redirect(302, '/location/all');
+            }
+
         });
     }
 });

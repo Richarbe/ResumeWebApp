@@ -37,6 +37,15 @@ exports.insert = function(params, callback) {
 
 };
 
+exports.update = function(params, callback) {
+    var query = 'UPDATE location SET loc_name = ?, address = ? WHERE location_id = ?';
+    var queryData = [params.loc_name, params.address, params.location_id];
+
+    connection.query(query, queryData, function(err, result) {
+        callback(err, result);
+    });
+};
+
 exports.delete = function(location_id, callback) {
     var query = 'DELETE FROM location WHERE location_id = ?';
     var queryData = [location_id];

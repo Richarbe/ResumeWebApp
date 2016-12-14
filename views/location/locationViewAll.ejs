@@ -7,7 +7,7 @@
             <tr><th>Name</th><th>Address</th><th>Actions</th></tr>
             <% for(var i=0; result.length > i; i++ ) { %>
             <tr>
-                <td><a href="/location/?location_id=<%= result[i].location_id %>"><%= result[i].location_name %> </a></td>
+                <td><a href="/location/?location_id=<%= result[i].location_id %>"><%= result[i].loc_name %> </a></td>
                 <td><%= result[i].address %></td>
                 <td>
                     <button onclick="event.preventDefault();window.location.href='/location/edit/?location_id=<%= result[i].location_id %>'">Edit</button>
