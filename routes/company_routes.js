@@ -109,13 +109,15 @@ router.get('/delete', function(req, res){
     }
     else {
         company_dal.delete(req.query.company_id, function(err, result){
-            if(err) {
-                res.send(err);
-            }
-            else {
-                //poor practice, but we will handle it differently once we start using Ajax
-                res.redirect(302, '/company/all');
-            }
+            company_dal.companyAddressDeleteAll(req.query.company_id, function(err, result){
+                if(err) {
+                    res.send(err);
+                }
+                else {
+                    //poor practice, but we will handle it differently once we start using Ajax
+                    res.redirect(302, '/company/all');
+                }
+            });
         });
     }
 });

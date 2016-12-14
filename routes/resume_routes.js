@@ -72,6 +72,38 @@ router.get('/insert', function(req, res){
     }
 });
 
+router.get('/edit', function(req, res){
+    if(req.query.resume_id == null) {
+        res.send('A resume id is required');
+    }
+    else {
+        resume_dal.edit(req.query.resume_id, function(err, result){
+            res.render('resume/resumeUpdate', {resume: result[0][0], address: result[1]});
+        });
+    }
+
+});
+
+router.get('/edit2', function(req, res){
+    if(req.query.company_id == null) {
+        res.send('A resume id is required');
+    }
+    else {
+        resume_dal.getById(req.query.company_id, function(err, company){
+            address_dal.getAll(function(err, address) {
+                res.render('resume/resumeUpdate', {company: company[0], address: address});
+            });
+        });
+    }
+
+});
+
+router.get('/update', function(req, res) {
+    resume_dal.update(req.query, function(err, result){
+        res.redirect(302, '/company/all');
+    });
+});
+
 // Delete a resume for the given resume_id
 router.get('/delete', function(req, res){
     if(req.query.resume_id == null) {
@@ -79,13 +111,15 @@ router.get('/delete', function(req, res){
     }
     else {
         resume_dal.delete(req.query.resume_id, function(err, result){
-            if(err) {
-                res.send(err);
-            }
-            else {
-                //poor practice, but we will handle it differently once we start using Ajax
-                res.redirect(302, '/resume/all');
-            }
+            resume_dal.resumeSkillDeleteAll(req.query.resume_id, function(err, result){
+                    if (err) {
+                        res.send(err);
+                    }
+                    else {
+                        //poor practice, but we will handle it differently once we start using Ajax
+                        res.redirect(302, '/resume/all');
+                    }
+            });
         });
     }
 });
