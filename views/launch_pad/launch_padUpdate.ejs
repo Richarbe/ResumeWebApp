@@ -1,0 +1,39 @@
+<%- include("../includes/header.ejs", {title: "Update " + launch_pad[0].pad_name}); %>
+
+<h1>Update <%= launch_pad[0].pad_name%></h1>
+<form action="/launch_pad/update" method="get">
+    <input type="hidden" id="launch_pad_id" name="launch_pad_id" value="<%= launch_pad[0].launch_pad_id %>">
+    Launch Pad Name: <input id="pad_name" name="pad_name" type="text" value="<%= launch_pad[0].pad_name %>" />
+    <br />
+    <br />
+    Organization:
+    <select id="organization_id" name="organization_id" >
+        <% for(var i=0; organization.length > i; i++ ) {
+            var selected = "";
+            if(organization[i].organization_id == launch_pad[0].organization_id){
+                selected = "selected";
+            }
+        %>
+        <option value="<%= organization[i].organization_id %>"><%= organization[i].org_name %></option>
+        <% } %>
+    </select>
+    <br />
+    <br />
+    Address:
+    <select id="location_id" name="location_id" >
+        <% for(var i=0; location.length > i; i++ ) {
+            var selected = "";
+            if(location[i].location_id == launch_pad[0].location_id){
+                selected = "selected";
+            }
+        %>
+        <option value="<%= location[i].location_id %>"><%= location[i].address %></option>
+        <% } %>
+    </select>
+
+    <br />
+    <input type="submit" />   <button onclick="event.preventDefault();window.location.href='/organization/all'">Cancel</button>
+
+</form>
+
+<%- include("../includes/footer.ejs"); %>

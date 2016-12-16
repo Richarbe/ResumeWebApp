@@ -1,0 +1,26 @@
+<%- include("../includes/header.ejs", {title:"Add New Launch Pad"}); %>
+<h1>Add New Launch Pad</h1>
+<form action="/launch_pad/insert" method="get">
+    Launch Pad Name: <input id="pad_name" name="pad_name" type="text" />
+    <br />
+    <br />
+    Organization:
+    <select id="organization_id" name="organization_id">
+        <% for(var i=0; organization.length > i; i++ ) { %>
+        <option value="<%= organization[i].organization_id %>"><%= organization[i].org_name %></option>
+        <% } %>
+    </select>
+    <br />
+    <br />
+    Address:
+    <select id="location_id" name="location_id">
+        <% for(var i=0; location.length > i; i++ ) { %>
+        <option value="<%= location[i].location_id %>"><%= location[i].address %></option>
+        <% } %>
+    </select>
+
+    <br />
+    <input type="submit" />   <button onclick="event.preventDefault();window.location.href='/launch_pad/all'">Cancel</button>
+
+</form>
+<%- include("../includes/footer.ejs"); %>

@@ -22,7 +22,7 @@
     <select id="location_id" name="location_id" >
         <% for(var i=0; location.length > i; i++ ) {
             var selected = "";
-            if(location[i].location_id == organization.location_id){
+            if(location[i].location_id == organization[0].location_id){
                 selected = "selected";
             }
         %>
