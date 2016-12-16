@@ -1,0 +1,26 @@
+<%- include("../includes/header.ejs", {title:"Add New Vehicle"}); %>
+<h1>Add New Vehicle</h1>
+<form action="/vehicle/insert" method="get">
+    Vehicle Name: <input id="veh_name" name="veh_name" type="text" />
+    <br />
+    <br />
+    Vehicle Model:
+    <select id="vehicle_model_id" name="vehicle_model_id">
+        <% for(var i=0; vehicle_model.length > i; i++ ) { %>
+        <option value="<%= vehicle_model[i].vehicle_model_id %>"><%= vehicle_model[i].mod_name %></option>
+        <% } %>
+    </select>
+    <br />
+    <br />
+    Organization:
+    <select id="organization_id" name="organization_id">
+        <% for(var i=0; organization.length > i; i++ ) { %>
+        <option value="<%= organization[i].organization_id %>"><%= organization[i].org_name %></option>
+        <% } %>
+    </select>
+
+    <br />
+    <input type="submit" />   <button onclick="event.preventDefault();window.location.href='/vehicle/all'">Cancel</button>
+
+</form>
+<%- include("../includes/footer.ejs"); %>

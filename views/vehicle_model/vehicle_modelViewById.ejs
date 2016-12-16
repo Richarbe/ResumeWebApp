@@ -1,0 +1,12 @@
+<%- include("../includes/header.ejs", {title:"Vehicle Model - " + result[0].mod_name}); %>
+<h1>Vehicle Model</h1>
+<ul>
+    <li>Model Name: <%= result[0].mod_name %></li>
+    <li>Mass at Pad (kg): <%= result[0].mass_at_pad_kg %></li>
+    <li>Thrust at Sea Level (kN): <%= result[0].thrust_asl_kN%></li>
+    <li>Status: <%= result[0].use_status%></li>
+</ul>
+
+<a href="/vehicle_model/all"><< back</a>
+
+<%- include("../includes/footer.ejs"); %>

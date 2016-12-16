@@ -37,16 +37,14 @@ router.get('/', function(req, res){
 // Return the add a new company form
 router.get('/add', function(req, res){
     // passing all the query parameters (req.query) to the insert function instead of each individually
-    launch_pad_dal.getAll(function(err,launch_pad) {
-        location_dal.getAll(function (err, location) {
-            organization_dal.getAll(function (err, organization) {
-                if (err) {
-                    res.send(err);
-                }
-                else {
-                    res.render('launch_pad/launch_padAdd', {'launch_pad':launch_pad, 'location': location, 'organization': organization});
-                }
-            });
+    location_dal.getAll(function (err, location) {
+        organization_dal.getAll(function (err, organization) {
+            if (err) {
+                res.send(err);
+            }
+            else {
+                res.render('launch_pad/launch_padAdd', {'location': location, 'organization': organization});
+            }
         });
     });
 });
@@ -95,10 +93,10 @@ router.get('/edit', function(req, res){
 
 router.get('/update', function(req, res) {
     if(req.query.launch_pad_id == null) {
-        res.send('An launch_pad id is required');
+        res.send('A launch pad id is required');
     }
     else if(req.query.pad_name == null) {
-        res.send('An launch pad name is required');
+        res.send('A launch pad name is required');
     }
 
     else {

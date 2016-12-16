@@ -1,0 +1,39 @@
+<%- include("../includes/header.ejs", {title: "Update " + vehicle[0].veh_name}); %>
+
+<h1>Update <%= vehicle[0].veh_name%></h1>
+<form action="/vehicle/update" method="get">
+    <input type="hidden" id="vehicle_id" name="vehicle_id" value="<%= vehicle[0].vehicle_id %>">
+    Vehicle Name: <input id="veh_name" name="veh_name" type="text" value="<%= vehicle[0].veh_name %>"/>
+    <br />
+    <br />
+    Vehicle Model:
+    <select id="vehicle_model_id" name="vehicle_model_id">
+        <% for(var i=0; vehicle_model.length > i; i++ ) {
+            var selected = "";
+            if(vehicle_model[i].vehicle_model_id == vehicle[0].vehicle_model_id){
+                selected = "selected";
+            }
+        %>
+        <option value="<%= vehicle_model[i].vehicle_model_id %>" <%=selected%>><%= vehicle_model[i].mod_name %></option>
+        <% } %>
+    </select>
+    <br />
+    <br />
+    Organization:
+    <select id="organization_id" name="organization_id">
+        <% for(var i=0; organization.length > i; i++ ) {
+            var selected = "";
+            if(organization[i].organization_id == vehicle[0].organization_id){
+                selected = "selected";
+            }
+        %>
+        <option value="<%= organization[i].organization_id %>" <%=selected%>><%= organization[i].org_name %></option>
+        <% } %>
+    </select>
+
+    <br />
+    <input type="submit" />   <button onclick="event.preventDefault();window.location.href='/vehicle/all'">Cancel</button>
+
+</form>
+
+<%- include("../includes/footer.ejs"); %>

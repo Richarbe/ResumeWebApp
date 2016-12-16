@@ -1,0 +1,12 @@
+<%- include("../includes/header.ejs", {title:"Vehicles - " + result[0].veh_name}); %>
+<h1>Vehicles</h1>
+<ul>
+    <li>Vehicle Name: <%= result[0].veh_name%></li>
+    <li>Vehicle Model: <%= result[0].mod_name%></li>
+    <li>Organization Name: <%= result[0].org_name %></li>
+
+</ul>
+
+<a href="/vehicle/all"><< back</a>
+
+<%- include("../includes/footer.ejs"); %>

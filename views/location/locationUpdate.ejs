@@ -1,6 +1,6 @@
 <%- include("../includes/header.ejs", {title: "Update " + result[0].loc_name}); %>
 
-<h1>Update <%= result.loc_name%></h1>
+<h1>Update <%= result[0].loc_name%></h1>
 <form action="/location/update" method="get">
     <input type="hidden" id="location_id" name="location_id" value="<%= result[0].location_id %>">
     Location Name: <input id="loc_name" name="loc_name" type="text" value="<%= result[0].loc_name %>"/>

@@ -1,0 +1,25 @@
+<%- include("../includes/header.ejs", {title:"Vehicle - View All"}); %>
+<h1>Launch Pad</h1>
+<a href="/vehicle/add">Add New Vehicle</a> <br />
+<br />
+
+<table border="2">
+    <tr><th>Name</th><th>Model</th><th>Organization</th><th>Actions</th></tr>
+    <% for(var i=0; result.length > i; i++ ) { %>
+    <tr>
+        <td><a href="/vehicle/?vehicle_id=<%= result[i].vehicle_id %>"><%= result[i].veh_name %> </a></td>
+        <td><a href="/vehicle_model/?vehicle_model_id=<%= result[i].vehicle_model_id %>"><%= result[i].mod_name%></a></td>
+        <td><a href="/organization/?organization_id=<%= result[i].organization_id %>"><%= result[i].org_name%></a></td>
+        <td>
+            <button onclick="event.preventDefault();window.location.href='/vehicle/edit/?vehicle_id=<%= result[i].vehicle_id %>'">Edit</button>
+            <form action="/vehicle/delete/">
+                <input type="hidden" name="vehicle_id" id="vehicle_id" value="<%= result[i].vehicle_id %>" />
+                <input type="submit" value="Delete"/>
+            </form>
+        </td>
+    </tr>
+    <% } %>
+</table>
+<br />
+<a href="/">Back to Index</a>
+<%- include("../includes/footer.ejs"); %>

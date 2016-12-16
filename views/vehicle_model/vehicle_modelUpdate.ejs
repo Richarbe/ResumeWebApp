@@ -1,0 +1,27 @@
+<%- include("../includes/header.ejs", {title: "Update " + result[0].mod_name}); %>
+
+<h1>Update <%= result[0].mod_name%></h1>
+<form action="/vehicle_model/update" method="get">
+    <input type="hidden" id="vehicle_model_id" name="vehicle_model_id" value="<%= result[0].vehicle_model_id %>">
+    Model Name: <input id="mod_name" name="mod_name" type="text" value="<%=result[0].mod_name%>" />
+    <br />
+    <br />
+    Mass at Pad (kg): <input id="mass_at_pad_kg" name="mass_at_pad_kg" type="text" value="<%=result[0].mass_at_pad_kg%>" />
+    <br />
+    <br />
+    Thrust at Sea Level (kN): <input id="thrust_asl_kN" name="thrust_asl_kN" type="text" value="<%=result[0].thrust_asl_kN%>" />
+    <br />
+    <br />
+    Status
+    <select id="use_status" name="use_status">
+        <% var selected1 = ""; var selected2 = "";
+        if(result[0].use_status == "active"){selected1 = "selected"}
+        else{selected2 = "selected"}%>
+        <option value="active" <%=selected1%>>active</option>
+        <option value="retired" <%=selected2%>>retired</option>
+    </select>
+    <input type="submit" />   <button onclick="event.preventDefault();window.location.href='/vehicle_model/all'">Cancel</button>
+
+</form>
+
+<%- include("../includes/footer.ejs"); %>

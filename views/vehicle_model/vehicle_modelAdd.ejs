@@ -1,0 +1,21 @@
+<%- include("../includes/header.ejs", {title:"Add New Vehicle Model"}); %>
+    <h1>Add New Vehicle Model</h1>
+    <form action="/vehicle_model/insert" method="get">
+        Model Name: <input id="mod_name" name="mod_name" type="text" />
+        <br />
+        <br />
+        Mass at Pad (kg): <input id="mass_at_pad_kg" name="mass_at_pad_kg" type="text" />
+        <br />
+        <br />
+        Thrust at Sea Level (kN): <input id="thrust_asl_kN" name="thrust_asl_kN" type="text" />
+        <br />
+        <br />
+        Status
+        <select id="use_status" name="use_status">
+            <option value="active">active</option>
+            <option value="retired">retired</option>
+        </select>
+        <input type="submit" />   <button onclick="event.preventDefault();window.location.href='/vehicle_model/all'">Cancel</button>
+
+    </form>
+<%- include("../includes/footer.ejs"); %>
