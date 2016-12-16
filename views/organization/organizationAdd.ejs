@@ -1,0 +1,30 @@
+<%- include("../includes/header.ejs", {title:"Add New Organization"}); %>
+    <h1>Add New Organization</h1>
+    <form action="/organization/insert" method="get">
+        Organization Name: <input id="org_name" name="org_name" type="text" />
+        <br />
+        <br />
+        Founding Date: <input id="start_date" name="start_date" type="text" value="null"/>
+        <script type="text/javascript">
+            AnyTime.picker( "start_date", {format: "%z-%m-%d", firstDOW: 1 });
+        </script>
+        <br />
+        <br />
+        Dissolution Date: <input id="end_date" name="end_date" type="text" value="null"/>
+        <script type="text/javascript">
+            AnyTime.picker( "end_date", {format: "%z-%m-%d", firstDOW: 1 });
+        </script>
+        <br />
+        <br />
+        Address:
+        <select id="location_id" name="location_id">
+            <% for(var i=0; location.length > i; i++ ) { %>
+            <option value="<%= location[i].location_id %>"><%= location[i].address %></option>
+            <% } %>
+        </select>
+
+        <br />
+        <input type="submit" />   <button onclick="event.preventDefault();window.location.href='/organization/all'">Cancel</button>
+
+    </form>
+<%- include("../includes/footer.ejs"); %>

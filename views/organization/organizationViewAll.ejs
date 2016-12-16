@@ -1,0 +1,34 @@
+<%- include("../includes/header.ejs", {title:"Organization - View All"}); %>
+        <h1>Organizations</h1>
+        <a href="/organization/add">Add New Organization</a> <br />
+        <br />
+
+        <table border="2">
+            <tr><th>Name</th><th>Founding Date</th><th>Dissolution</th><th>Address</th><th>Actions</th></tr>
+            <% for(var i=0; result.length > i; i++ ) { %>
+            <tr>
+                <td><a href="/organization/?organization_id=<%= result[i].organization_id %>"><%= result[i].org_name %> </a></td>
+                <% if(result[i].start_date==null){ %>
+                <td>0000-00-00</td>
+                <% }else{ %>
+                <td><%= result[i].start_date%></td>
+                <% } %>
+                <% if(result[i].end_date==null){ %>
+                <td>0000-00-00</td>
+                <% }else{ %>
+                <td><%= result[i].end_date%></td>
+                <% } %>
+                <td><a href="/location/?location_id=<%= result[i].location_id %>"><%= result[i].address%></a></td>
+                <td>
+                    <button onclick="event.preventDefault();window.location.href='/organization/edit/?organization_id=<%= result[i].organization_id %>'">Edit</button>
+                    <form action="/organization/delete/">
+                        <input type="hidden" name="organization_id" id="organization_id" value="<%= result[i].organization_id %>" />
+                        <input type="submit" value="Delete"/>
+                    </form>
+                </td>
+            </tr>
+            <% } %>
+        </table>
+        <br />
+        <a href="/">Back to Index</a>
+<%- include("../includes/footer.ejs"); %>

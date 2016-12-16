@@ -1,0 +1,38 @@
+<%- include("../includes/header.ejs", {title: "Update " + organization[0].org_name}); %>
+
+<h1>Update <%= organization[0].org_name%></h1>
+<form action="/organization/update" method="get">
+    <input type="hidden" id="organization_id" name="organization_id" value="<%= organization[0].organization_id %>">
+    Organization Name: <input id="org_name" name="org_name" type="text" value="<%= organization[0].org_name %>" />
+    <br />
+    <br />
+    Founding Date: <input id="start_date" name="start_date" type="text" value="<%= organization[0].start_date %>"/>
+    <script type="text/javascript">
+        AnyTime.picker( "start_date", {format: "%z-%m-%d", firstDOW: 1 });
+    </script>
+    <br />
+    <br />
+    Dissolution Date: <input id="end_date" name="end_date" type="text" value="<%= organization[0].end_date %>"/>
+    <script type="text/javascript">
+        AnyTime.picker( "end_date", {format: "%z-%m-%d", firstDOW: 1 });
+    </script>
+    <br />
+    <br />
+    Address:
+    <select id="location_id" name="location_id" >
+        <% for(var i=0; location.length > i; i++ ) {
+            var selected = "";
+            if(location[i].location_id == organization.location_id){
+                selected = "selected";
+            }
+        %>
+        <option value="<%= location[i].location_id %>"><%= location[i].address %></option>
+        <% } %>
+    </select>
+
+    <br />
+    <input type="submit" />   <button onclick="event.preventDefault();window.location.href='/organization/all'">Cancel</button>
+
+</form>
+
+<%- include("../includes/footer.ejs"); %>

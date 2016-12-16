@@ -1,0 +1,20 @@
+<%- include("../includes/header.ejs", {title:"Organizations - " + result[0].org_name}); %>
+<h1>Location</h1>
+<ul>
+    <li>Organization Name: <%= result[0].org_name %></li>
+    <li>Founding Date: <% if(result[0].start_date==null){ %>
+     0000-00-00
+    <% }else{ %>
+        <%= result[0].start_date%>
+        <% } %></li>
+    <li>Dissolution Date: <% if(result[0].end_date==null){ %>
+    0000-00-00
+    <% }else{ %>
+        <%= result[0].end_date%>
+        <% } %></li>
+    <li>Address: <%= result[0].address%></li>
+</ul>
+
+<a href="/organization/all"><< back</a>
+
+<%- include("../includes/footer.ejs"); %>
