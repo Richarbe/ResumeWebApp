@@ -1,0 +1,26 @@
+<%- include("../includes/header.ejs", {title:"Launch Attempt - View All"}); %>
+        <h1>Launch Attempts</h1>
+        <a href="/launch_attempt/add">Add New Launch Attempt</a> <br />
+        <br />
+
+        <table border="2">
+            <tr><th>Attempt Time</th><th>Success Status</th><th>Launch Pad</th><th>Vehicle</th><th>Actions</th></tr>
+            <% for(var i=0; result.length > i; i++ ) { %>
+            <tr>
+                <td><a href="/launch_attempt/?launch_attempt_id=<%= result[i].launch_attempt_id %>"><%= result[i].launch_time %> </a></td>
+                <td><%= result[i].success_status%></td>
+                <td><a href="/launch_pad/?launch_pad_id=<%= result[i].launch_pad_id%>"><%=result[i].pad_name%></a></td>
+                <td><a href="/vehicle/?vehicle_id=<%= result[i].vehicle_id%>"><%=result[i].veh_name%></a></td>
+                <td>
+                    <button onclick="event.preventDefault();window.location.href='/launch_attempt/edit/?launch_attempt_id=<%= result[i].launch_attempt_id %>'">Edit</button>
+                    <form action="/launch_attempt/delete/">
+                        <input type="hidden" name="launch_attempt_id" id="launch_attempt_id" value="<%= result[i].launch_attempt_id %>" />
+                        <input type="submit" value="Delete"/>
+                    </form>
+                </td>
+            </tr>
+            <% } %>
+        </table>
+        <br />
+        <a href="/">Back to Index</a>
+<%- include("../includes/footer.ejs"); %>

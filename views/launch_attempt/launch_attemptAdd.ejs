@@ -1,0 +1,32 @@
+<%- include("../includes/header.ejs", {title:"Add New Launch Attempt"}); %>
+    <h1>Add New Launch Attempt</h1>
+    <form action="/launch_attempt/insert" method="get">
+        Attempt Time: <input id="launch_time" name="launch_time" type="text" size="40" value=""/>
+        <script type="text/javascript">
+            AnyTime.picker( "launch_time", {format: "%Y-%m-%d %H:%i:%s %E %#", firstDOW: 1 });
+        </script>
+        <br />
+        <br />
+        Success Status:
+        <select id="success_status" name="success_status">
+            <option value="success">success</option>
+            <option value="scrub">scrub</option>
+            <option value="failure">failure</option>
+        </select>
+        Launch Pad:
+        <select id="launch_pad_id" name="launch_pad_id">
+            <% for(var i=0; launch_pad.length > i; i++ ) { %>
+            <option value="<%= launch_pad[i].launch_pad_id %>"><%= launch_pad[i].pad_name %></option>
+            <% } %>
+        </select>
+        Vehicle:
+        <select id="vehicle_id" name="vehicle_id">
+            <% for(var i=0; vehicle.length > i; i++ ) { %>
+            <option value="<%= vehicle[i].vehicle_id %>"><%= vehicle[i].veh_name %></option>
+            <% } %>
+        </select>
+        <br />
+        <input type="submit" />   <button onclick="event.preventDefault();window.location.href='/launch_attempt/all'">Cancel</button>
+
+    </form>
+<%- include("../includes/footer.ejs"); %>

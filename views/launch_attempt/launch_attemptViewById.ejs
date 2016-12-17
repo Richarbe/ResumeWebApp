@@ -1,0 +1,12 @@
+<%- include("../includes/header.ejs", {title:"Launch Attempts - " + result[0].veh_name + " at " + result[0].launch_time}); %>
+<h1>Launch Attempts</h1>
+<ul>
+    <li>Attempt Time: <%= result[0].launch_time %></li>
+    <li>Success Status: <%= result[0].success_status%></li>
+    <li>Vehicle Name: <%= result[0].veh_name%></li>
+    <li>Pad Name: <%= result[0].pad_name%></li>
+</ul>
+
+<a href="/launch_attempt/all"><< back</a>
+
+<%- include("../includes/footer.ejs"); %>

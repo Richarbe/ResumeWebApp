@@ -1,0 +1,50 @@
+<%- include("../includes/header.ejs", {title: "Update " + launch_attempt[0].veh_name + " at " + launch_attempt[0].launch_time}); %>
+
+<h1>Update <%= launch_attempt[0].veh_name + " at " + launch_attempt[0].launch_time %></h1>
+<form action="/launch_attempt/update" method="get">
+    <input type="hidden" id="launch_attempt_id" name="launch_attempt_id" value="<%= launch_attempt[0].launch_attempt_id %>">
+    Attempt Time: <input id="launch_time" name="launch_time" type="text" size="40" value="<%= launch_attempt[0].launch_time %>"/>
+    <script type="text/javascript">
+        AnyTime.picker( "launch_time", {format: "%Y-%m-%d %H:%i:%s %E %#", firstDOW: 1 });
+    </script>
+    <br />
+    <br />
+    Success Status:
+    <select id="success_status" name="success_status">
+        <% var selected1 = ""; var selected2 = ""; var selected3 = "";
+        if(launch_attempt[0].success_status == "success"){selected1 = "selected"}
+        else if(launch_attempt[0].success_status == "scrub"){selected2 = "selected"}
+        else{selected3 = "selected"}
+        %>
+        <option value="success" <%=selected1%>>success</option>
+        <option value="scrub" <%=selected2%>>scrub</option>
+        <option value="failure" <%=selected3%>>failure</option>
+    </select>
+    Launch Pad:
+    <select id="launch_pad_id" name="launch_pad_id">
+        <% for(var i=0; launch_pad.length > i; i++ ) {
+            var selected = "";
+            if(launch_pad[i].launch_pad_id == launch_attempt[0].launch_pad_id){
+                selected = "selected";
+            }
+        %>
+        <option value="<%= launch_pad[i].launch_pad_id %>" <%=selected%>><%= launch_pad[i].pad_name %></option>
+        <% } %>
+    </select>
+    Vehicle:
+    <select id="vehicle_id" name="vehicle_id">
+        <% for(var i=0; vehicle.length > i; i++ ) {
+            var selected = "";
+            if(vehicle[i].vehicle_id == launch_attempt[0].vehicle_id){
+                selected = "selected";
+            }
+        %>
+        <option value="<%= vehicle[i].vehicle_id %>" <%=selected%>><%= vehicle[i].veh_name %></option>
+        <% } %>
+    </select>
+    <br />
+    <input type="submit" />   <button onclick="event.preventDefault();window.location.href='/launch_attempt/all'">Cancel</button>
+
+</form>
+
+<%- include("../includes/footer.ejs"); %>
