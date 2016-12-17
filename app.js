@@ -6,7 +6,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
-var company = require('./routes/company_routes');
 var location = require('./routes/location_routes');
 var organization = require('./routes/organization_routes');
 var launch_pad = require('./routes/launch_pad_routes');
@@ -32,7 +31,6 @@ app.use(require('less-middleware')(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/company', company);
 app.use('/location', location);
 app.use('/organization', organization);
 app.use('/launch_pad',launch_pad);
