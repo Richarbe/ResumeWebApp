@@ -34,9 +34,7 @@ router.get('/', function(req, res){
     }
 });
 
-// Return the add a new company form
 router.get('/add', function(req, res){
-    // passing all the query parameters (req.query) to the insert function instead of each individually
     vehicle_model_dal.getAll(function (err, vehicle_model) {
         organization_dal.getAll(function (err, organization) {
             if (err) {
@@ -49,7 +47,6 @@ router.get('/add', function(req, res){
     });
 });
 
-// insert a company record
 router.get('/insert', function(req, res){
     // simple validation
     if(req.query.veh_name == null) {

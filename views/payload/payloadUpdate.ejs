@@ -1,0 +1,55 @@
+<%- include("../includes/header.ejs", {title: "Update " + payload[0].pay_name}); %>
+
+<h1>Update <%= payload[0].pay_name%></h1>
+<form action="/payload/update" method="get">
+    <input type="hidden" id="payload_id" name="payload_id" value="<%= payload[0].payload_id %>">
+    Payload Name: <input id="pay_name" name="pay_name" type="text" value="<%= payload[0].pay_name%>"/>
+    <br />
+    <br />
+    Destination: <input id="destination" name="destination" type="text" value="<%= payload[0].destination%>"/>
+    <br />
+    <br />
+    Success Status:
+    <select id="success_status" name="success_status">
+        <% var selected1 = ""; var selected2 = ""; var selected3 = "";
+        if(payload[0].success_status == "success"){selected1 = "selected"}
+        else if(payload[0].success_status == "partial success"){selected2 = "selected"}
+        else{selected3 = "selected"}
+        %>
+        <option value="success" <%=selected1%>>success</option>
+        <option value="partial success" <%=selected2%>>partial success</option>
+        <option value="failure" <%=selected3%>>failure</option>
+    </select>
+    <br />
+    <br />
+    Vehicle:
+    <select id="vehicle_id" name="vehicle_id">
+        <% for(var i=0; vehicle.length > i; i++ ) {
+            var selected = "";
+            if(vehicle[i].vehicle_id == payload[0].vehicle_id){
+                selected = "selected";
+            }
+        %>
+        <option value="<%= vehicle[i].vehicle_id %>" <%=selected%>><%= vehicle[i].veh_name %></option>
+        <% } %>
+    </select>
+    <br />
+    <br />
+    Organization:
+    <select id="organization_id" name="organization_id">
+        <% for(var i=0; organization.length > i; i++ ) {
+            var selected = "";
+            if(organization[i].organization_id == payload[0].organization_id){
+                selected = "selected";
+            }
+        %>
+        <option value="<%= organization[i].organization_id %>" <%=selected%>><%= organization[i].org_name %></option>
+        <% } %>
+    </select>
+
+    <br />
+    <input type="submit" />   <button onclick="event.preventDefault();window.location.href='/payload/all'">Cancel</button>
+
+</form>
+
+<%- include("../includes/footer.ejs"); %>

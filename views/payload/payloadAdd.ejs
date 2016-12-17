@@ -1,0 +1,37 @@
+<%- include("../includes/header.ejs", {title:"Add New Payload"}); %>
+<h1>Add New Payload</h1>
+<form action="/payload/insert" method="get">
+    Payload Name: <input id="pay_name" name="pay_name" type="text" />
+    <br />
+    <br />
+    Destination: <input id="destination" name="destination" type="text" />
+    <br />
+    <br />
+    Success Status:
+    <select id="success_status" name="success_status">
+        <option value="success">success</option>
+        <option value="partial success">partial success</option>
+        <option value="failure">failure</option>
+    </select>
+    <br />
+    <br />
+    Vehicle:
+    <select id="vehicle_id" name="vehicle_id">
+        <% for(var i=0; vehicle.length > i; i++ ) { %>
+        <option value="<%= vehicle[i].vehicle_id %>"><%= vehicle[i].veh_name %></option>
+        <% } %>
+    </select>
+    <br />
+    <br />
+    Organization:
+    <select id="organization_id" name="organization_id">
+        <% for(var i=0; organization.length > i; i++ ) { %>
+        <option value="<%= organization[i].organization_id %>"><%= organization[i].org_name %></option>
+        <% } %>
+    </select>
+
+    <br />
+    <input type="submit" />   <button onclick="event.preventDefault();window.location.href='/payload/all'">Cancel</button>
+
+</form>
+<%- include("../includes/footer.ejs"); %>
