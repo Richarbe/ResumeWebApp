@@ -4,13 +4,14 @@
         <br />
 
         <table border="2">
-            <tr><th>Name</th><th>Mass at Pad (kg)</th><th>Thrust at Sea Level (kN)</th><th>Status</th><th>Actions</th></tr>
+            <tr><th>Name</th><th>Mass at Pad (kg)</th><th>Thrust at Sea Level (kN)</th><th>Status</th><th>Failure Rate</th><th>Actions</th></tr>
             <% for(var i=0; result.length > i; i++ ) { %>
             <tr>
                 <td><a href="/vehicle_model/?vehicle_model_id=<%= result[i].vehicle_model_id %>"><%= result[i].mod_name %> </a></td>
                 <td><%= result[i].mass_at_pad_kg %></td>
                 <td><%= result[i].thrust_asl_kN %></td>
                 <td><%= result[i].use_status %></td>
+                <td><%= result[i].fail_rate %></td>
                 <td>
                     <button onclick="event.preventDefault();window.location.href='/vehicle_model/edit/?vehicle_model_id=<%= result[i].vehicle_model_id %>'">Edit</button>
                     <form action="/vehicle_model/delete/">

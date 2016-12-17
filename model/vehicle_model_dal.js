@@ -4,8 +4,9 @@ var db  = require('./db_connection.js');
 /* DATABASE CONFIGURATION */
 var connection = mysql.createConnection(db.config);
 
+//function here!
 exports.getAll = function(callback) {
-    var query = 'SELECT * FROM vehicle_model;';
+    var query = 'SELECT *, vehicle_failure_rate(vehicle_model_id) as fail_rate FROM vehicle_model;';
 
     connection.query(query, function(err, result) {
         callback(err, result);
